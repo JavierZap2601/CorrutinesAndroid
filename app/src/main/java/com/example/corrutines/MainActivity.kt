@@ -21,11 +21,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             CorrutinesTheme {
                 // A surface container using the 'background' color from the theme
+                var studentViewModel = StudentViewModel()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    RuletaView(studentViewModel)
                 }
             }
         }
@@ -54,8 +55,10 @@ fun GreetingPreview() {
 fun RuletaView(studentViewModel: StudentViewModel){
     Column(Modifier.fillMaxSize()){
         Text(text= studentViewModel.selectedStudent)
-        Button(onClick={studentViewModel.getData() }) {
+        Button(onClick={studentViewModel.getData() },
+            enabled = studentViewModel.enabledButton) {
             Text(text="Tendre suerte")
+
         }
     }
 }
